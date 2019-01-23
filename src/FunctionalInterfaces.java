@@ -161,6 +161,29 @@ public class FunctionalInterfaces {
                .collect(Collectors.toList());
 
    }
-   
+
+   private static void StreamsExamples(){
+       List<String> strings = Arrays.asList("ddd2", "aaa2", "bbb3", "ccc", "bbb2", "ddd1");
+
+       strings.stream()
+               .sorted()
+               .sorted((a,b) -> b.compareTo(a))
+               .filter((s) -> s.startsWith("a"))
+               .map(String::toUpperCase)
+               .forEach(System.out::println);
+
+       long numberOfElementsStartWithB = strings.stream()
+               .filter((s) -> s.startsWith("b"))
+               .count();
+
+       Optional<String> redduced = strings.stream()
+               .sorted()
+               .reduce((s1,s2) -> s1 + "#" + s2);
+
+       redduced.ifPresent(System.out::println);
+
+       
+   }
+
 
 }
